@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinheiro Livre - Recupere Sua Soberania Financeira</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #0a0a0a;
+        color: #ffffff;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animated {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    }
+
+    .bg-animated::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(255, 120, 0, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(242, 169, 59, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 20%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
+        animation: gradientShift 20s ease infinite;
+    }
+
+    @keyframes gradientShift {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-50px, -50px); }
+    }
+
+    /* Container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+        padding: 20px 0;
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ff7800, #f2a93b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        padding: 60px 0;
+        position: relative;
+    }
+
+    .hero-content {
+        max-width: 700px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        background: linear-gradient(135deg, #ffffff, #f2a93b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        color: #cccccc;
+        margin-bottom: 40px;
+        font-weight: 300;
+    }
+
+    .highlight {
+        color: #f2a93b;
+        font-weight: 600;
+    }
+
+    /* CTA Box */
+    .cta-box {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 500px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s;
+    }
+
+    .cta-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 80px rgba(242, 169, 59, 0.3);
+    }
+
+    /* Timer */
+    .urgency-banner {
+        background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 120, 0, 0.2));
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 120, 0, 0.5);
+        text-align: center;
+    }
+
+    .urgency-text {
+        font-size: 14px;
+        color: #ff6b6b;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .countdown-item {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px 15px;
+        border-radius: 8px;
+        min-width: 60px;
+    }
+
+    .countdown-number {
+        font-size: 28px;
+        font-weight: 900;
+        color: #ff7800;
+        display: block;
+    }
+
+    .countdown-label {
+        font-size: 11px;
+        color: #cccccc;
+        text-transform: uppercase;
+    }
+
+    /* Pricing */
+    .pricing-section {
+        margin-bottom: 30px;
+    }
+
+    .price-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .original-price {
+        font-size: 1.3rem;
+        color: #888;
+        text-decoration: line-through;
+        margin-bottom: 5px;
+    }
+
+    .current-price {
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #ff7800, #f2a93b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+    }
+
+    .discount-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff7800, #f2a93b);
+        color: #ffffff;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 10px;
+    }
+
+    .price-details {
+        color: #cccccc;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    /* CTA Button */
+    .btn-primary {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, #ff7800, #f2a93b);
+        border: none;
+        border-radius: 10px;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 30px rgba(242, 169, 59, 0.3);
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(242, 169, 59, 0.5);
+    }
+
+    .guarantee {
+        background: rgba(76, 175, 80, 0.1);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .guarantee-text {
+        font-size: 14px;
+        color: #4caf50;
+        font-weight: 600;
+    }
+
+    /* Stats Section */
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 80px 0;
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #ff7800, #f2a93b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-label {
+        color: #cccccc;
+        margin-top: 10px;
+    }
+
+    /* Problem Section */
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: #cccccc;
+        max-width: 600px;
+        margin: 0 auto 60px;
+        font-size: 1.2rem;
+    }
+
+    .problems-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .problem-card {
+        background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(139, 0, 0, 0.1));
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 0, 0, 0.2);
+        transition: all 0.3s;
+    }
+
+    .problem-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+    }
+
+    .problem-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .problem-card h3 {
+        color: #ff6b6b;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+    }
+
+    /* Solution Section */
+    .solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .solution-card {
+        background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(46, 125, 50, 0.1));
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        transition: all 0.3s;
+    }
+
+    .solution-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(76, 175, 80, 0.2);
+    }
+
+    .solution-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .solution-card h3 {
+        color: #4caf50;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .testimonial-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+
+    .quote-icon {
+        font-size: 4rem;
+        color: rgba(242, 169, 59, 0.2);
+        position: absolute;
+        top: 10px;
+        left: 20px;
+    }
+
+    .testimonial-text {
+        position: relative;
+        z-index: 1;
+        color: #cccccc;
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+        font-weight: 600;
+        color: #f2a93b;
+    }
+
+    /* Final CTA */
+    .final-cta {
+        text-align: center;
+        padding: 100px 0;
+        background: linear-gradient(135deg, rgba(255, 120, 0, 0.1), rgba(242, 169, 59, 0.1));
+        border-radius: 30px;
+        margin: 80px 0;
+    }
+
+    .final-cta h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 30px;
+    }
+
+    .btn-large {
+        padding: 20px 60px;
+        font-size: 1.3rem;
+        background: linear-gradient(135deg, #ff7800, #f2a93b);
+        border: none;
+        border-radius: 15px;
+        color: #ffffff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow: 0 15px 40px rgba(242, 169, 59, 0.4);
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .btn-large:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(242, 169, 59, 0.6);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 40px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+    }
+
+    /* Bonuses Section */
+    .bonuses {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 40px;
+        border-radius: 20px;
+        margin-top: 30px;
+    }
+
+    .bonus-title {
+        text-align: center;
+        color: #f2a93b;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    .bonus-list {
+        list-style: none;
+    }
+
+    .bonus-item {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #cccccc;
+    }
+
+    .bonus-item:last-child {
+        border-bottom: none;
+    }
+
+    .bonus-item::before {
+        content: " ";
+        color: #4caf50;
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero {
+            min-height: auto;
+            padding: 40px 0;
+        }
+
+        .cta-box {
+            padding: 30px 20px;
+        }
+
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        .countdown {
+            gap: 10px;
+        }
+
+        .countdown-item {
+            padding: 8px 10px;
+            min-width: 50px;
+        }
+
+        .countdown-number {
+            font-size: 22px;
+        }
+
+        .current-price {
+            font-size: 2.5rem;
+        }
+    }
+
+    /* Pulse animation for urgency */
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    .urgency-banner {
+        animation: pulse 2s ease-in-out infinite;
+    }
+</style></head>
+<body>
+    <div class="bg-animated"></div>
+
+<header>
+    <div class="container">
+        <div class="logo">₿ DINHEIRO LIVRE</div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Seu Banco Pode Congelar Sua Conta Amanhã. 
+Você Está Preparado?</h1>
+            <p class="hero-subtitle">
+                Descubra como <span class="highlight">itcoin e Monero</span> protegem seu dinheiro de 
+                <span class="highlight">inflação, censura e confisco</span> — enquanto ainda é legal.
+            </p>
+
+            <div class="cta-box">
+                <div class="urgency-banner">
+                    <div class="urgency-text"> Promoção Termina em:</div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Minutos</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Segundos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <div class="price-container">
+                        <div class="original-price">De R$ 97,00</div>
+                        <div class="current-price">R$ 29,90</div>
+                        <div class="discount-badge">69% OFF - Hoje</div>
+                        <div class="price-details">
+                             200+ páginas de conhecimento acionável
+
+                             Acesso vitalício + atualizações gratuitas
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://go.hotmart.com/J103951047S" id="buyButton" class="btn-primary">
+                     Garantir Meu Acesso Agora →
+
+                </a>
+
+                <div class="guarantee">
+                    <div class="guarantee-text">
+                         Garantia de 7 dias - 100% do dinheiro de volta se não gostar
+                    </div>
+                </div>
+
+                <div class="bonuses">
+                    <div class="bonus-title"> Bônus Exclusivos Inclusos:</div>
+                    <ul class="bonus-list">
+                        <li class="bonus-item">Checklist de Segurança Completo (PDF)</li>
+                        <li class="bonus-item">Lista Atualizada de Exchanges e Wallets</li>
+                        <li class="bonus-item">Acesso ao Grupo Telegram Privado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">86%</div>
+                <div class="stat-label">Perda do Real desde 1994</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">23M</div>
+                <div class="stat-label">Chineses banidos de viajar (crédito social)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">280+</div>
+                <div class="stat-label">Contas congeladas no Canadá (protestos 2022)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">130</div>
+                <div class="stat-label">Países desenvolvendo CBDCs (moeda rastreável)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">O Problema Que Ninguém Te Contou</h2>
+        <p class="section-subtitle">
+            Seu dinheiro no banco não é seu. E está piorando.
+        </p>
+
+        <div class="problems-grid">
+            <div class="problem-card">
+                <div class="problem-icon"></div>
+                <h3>Vigilância Total</h3>
+                <p>Cada Pix, cada compra, cada transferência é rastreada, armazenada e vendida. Seu extrato bancário revela mais que sua namorada sabe sobre você.</p>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon"></div>
+                <h3>Censura Financeira</h3>
+                <p>Bancos bloqueiam contas sem explicação. Governos congelam fundos de "indesejáveis". Se você incomoda, você é desligado.</p>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon"></div>
+                <h3>Inflação Invisível</h3>
+                <p>Seu dinheiro perde 8-12% ao ano. Poupança é piada. Governo imprime, você paga. É roubo legalizado.</p>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon"></div>
+                <h3>DREX Está Vindo</h3>
+                <p>Real Digital com "recursos opcionais": rastreamento total, dinheiro com expiração, bloqueios remotos. Distopia programável.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">A Solução Existe (E É Legal)</h2>
+        <p class="section-subtitle">
+            Dinheiro que nenhum governo pode imprimir, congelar ou confiscar.
+        </p>
+
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="solution-icon">₿</div>
+                <h3>Bitcoin</h3>
+                <p>Escassez absoluta (21M). Descentralizado (20.000 nós). Imutável. Ouro digital que você carrega na cabeça.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon"></div>
+                <h3>Monero</h3>
+                <p>Privacidade por padrão. Transações invisíveis. Fungível. Dinheiro digital como deveria ser: livre e privado.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon"></div>
+                <h3>Self-Custody</h3>
+                <p>Você é o banco. Hardware wallet no bolso. Seed phrase na cabeça. Ninguém pode bloquear. Ninguém pode confiscar.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon"></div>
+                <h3>Economia Paralela</h3>
+                <p>Ganhe em cripto. Gaste em cripto. P2P sem KYC. Comunidades globais. Liberdade financeira de verdade.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">O Que Você Vai Aprender</h2>
+        <p class="section-subtitle">200+ páginas. Zero fluff. Só informação acionável.</p>
+
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <h3> Parte I: O Problema</h3>
+                <p>Como você perdeu privacidade financeira. Casos reais de censura. Inflação como roubo. Por que isso importa AGORA.</p>
+            </div>
+
+            <div class="solution-card">
+                <h3> Parte II: A Solução</h3>
+                <p>O que é dinheiro de verdade. Bitcoin explicado sem jargão. Monero: privacidade máxima. Stablecoins e Lightning Network.</p>
+            </div>
+
+            <div class="solution-card">
+                <h3> Parte III: A Prática</h3>
+                <p>Como comprar (exchanges brasileiras). Como guardar (hardware wallets). Usar Monero no dia a dia. Privacidade operacional (Tor, VPN).</p>
+            </div>
+
+            <div class="solution-card">
+                <h3> Parte IV: Avançado</h3>
+                <p>Economia circular. Proteção contra violência física. Aspectos legais no Brasil (2025). CBDCs e por que resistir.</p>
+            </div>
+
+            <div class="solution-card">
+                <h3> Parte V: Manifesto</h3>
+                <p>Casos reais brasileiros. Ética da privacidade. Plano de ação concreto. Recursos para continuar aprendendo.</p>
+            </div>
+
+            <div class="solution-card">
+                <h3> Bônus</h3>
+                <p>Checklists de segurança. Templates de declaração IR. Lista de exchanges/wallets. Comunidades brasileiras. Links atualizados.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Quem Já Leu, Recomenda</h2>
+        
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "Investimento que se pagou em 1 semana. Comprei R$ 10k em Bitcoin depois de ler. Valorizou 40% em 6 meses. Mas o mais importante: aprendi a ser meu próprio banco."
+                </p>
+                <p class="testimonial-author">— Ricardo M., Empreendedor, SP</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "Finalmente entendi Monero. Comprei P2P sem KYC. Tenho dinheiro que NINGUÉM rastreia. Sensação de liberdade que eu não sentia há anos. Valeu cada centavo."
+                </p>
+                <p class="testimonial-author">— Ana S., Designer, RJ</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "Sou desenvolvedor, achei que sabia tudo sobre cripto. Esse livro me mostrou aspectos de privacidade e segurança que eu NUNCA tinha pensado. Mudou como opero. R$ 97 foi praticamente de graça."
+                </p>
+                <p class="testimonial-author">— Carlos T., Dev, Floripa</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta">
+    <div class="container">
+        <h2> Promoção Termina Hoje à Meia-Noite</h2>
+        <p class="section-subtitle">
+            Amanhã volta para R$ 197. 
+
+            <span class="highlight">Garanta 50% OFF agora.</span>
+        </p>
+        <a href="#" class="btn-large" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+            Garantir Acesso por R$ 97 Agora
+        </a>
+        <p style="margin-top: 20px; color: #888; font-size: 14px;">
+             Acesso imediato após pagamento
+
+             Garantia incondicional de 7 dias
+        </p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Dinheiro Livre. Conhecimento é poder. Privacidade é direito.</p>
+        <p style="margin-top: 10px; font-size: 12px;">
+            ₿ Bitcoin • Ӿ Monero •  Self-Custody •  Descentralização
+        </p>
+    </div>
+</footer>
+
+<script>
+    // Countdown Timer - Resets at midnight
+    function updateCountdown() {
+        const now = new Date();
+        const midnight = new Date();
+        midnight.setHours(24, 0, 0, 0);
+        const timeLeft = midnight - now;
+
+        const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+        const seconds = Math.floor((timeLeft / 1000) % 60);
+
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script></body>
+</html>
+
